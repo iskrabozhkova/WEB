@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script async defer src="./javascript/index.js"></script>
+    <title>Typescript</title>
+</head>
+<body>
+    <nav id="sideNavbar">
+        <h3>Съдържание</h4>
+        <a href="#intro">Въведение</a>
+        <a href="#js-ts">JavaScript и TypeScript</a>
+        <a href="#install">Инсталиране</a>
+        <a href="#types">Типове</a> 
+        <a href="#functions">Функции</a>
+        <a href="#classes">Класове</a>
+        <a href="#interfaces">Интерфейси</a>
+        <a href="#generics">Generics</a>
+        <a href="#namespace">Namespace</a>
+        <a href="#pros-cons">Плюсове и минуси</a>
+        <a href="#ts-angular">TypeScript и Angular</a>
+        <a href="#sources">Източници</a>
+    </nav>
+    <section class="main">
+        <header>
+            <h1>TypeScript</h1>
+            <h4>Изготвил: Искра Божкова, 62410</h4>
+        </header>
+        <article class="article-container">
+            <h2 id="intro">Въведение</h2>
+            <p>Typescript е език за програмиране, разработен и поддържан от Microsoft. Проектиран е под ръководството на Андерс Хейлсберг, 
+                който e известен с това, че е ръководил и разработването на езика C#. TypeScript е пуснат за първи път през октомври 2012 г.</p>
+            <p>Той е проектиран, за да подпомогне разработването на по-големи приложения, защото помага да се избегнат често срещани грешки.
+                Езикът може да предотврати загубата на време за отстраняване на грешки и това улеснява екипи от хора да работят по един и същи проект. </p>
+            <p>TypeScript се нуждае от компилатор, който може да преобразува синтаксиса на TypeScript в стандартен JavaScript. Този компилатор се нарича транспилатор и е предназначен да преобразува един език за програмиране в друг. 
+                TypeScript файловете са с разширение .ts, а след като се компилират ще се получат .js файлове като изход. </p>
+            <p>ТypeScript позволява да използваме нашите JavaScript умения по-ефективно. Той често може да бъде описван като 
+                <code class="code">“надмножество на JavaScript“</code> или <code class="code">„JavaScript с типове“</code>. Това означава, че всяка програма, написана на JavaScript, също е програма и на TypeScript. Следната картинка показва връзката между двата езика:</p>
+            <figure class="image-container">
+                <img src="img/js-ts-compare.png" class="image"></img>
+                <figcaption>Фиг.1: Връзка между TypeScript и JavaScript
+                    <a href="#link1">[1]</a>
+                </figcaption>
+            </figure>
+        </article>
+        <article class="article-container" >
+            <h2 id="js-ts">JavaScript и TypeScript</h2>
+            <p>
+                Както знаем JavaScript се счита за основния скриптов език за създаването на уеб страници – можем да го използваме както за front-end, 
+                така и за back-end. Но дали е разработен за създаването на големи и сложни уеб приложения? – Отговорът тук е НЕ.
+                </p>
+                <p>
+                Нека разгледаме 
+                следната функция, която служи за събиране на две числа. Какво ще се случи ако потребителят въведе ‘5’ и 10 като аргументи на функцията? 
+                Ако не знаеш натисни тук и провери -> <button id="button-add-function">Натисни тук</button>
+            </p>
+            <figure class="image-container">
+                <pre class="code-blocks">
+                    function add(x, y) {
+                        return x + y;
+                     }             
+                </pre>
+                <figcaption>Код 1: Функция за събиране на две числа
+                    <a href="#link2">[2]</a>
+                </figcaption>
+            </figure>
+            <p id="result"> Ще върне резултат 510, което обаче не е резултатът, който ние искаме да получим.</p>
+            <p>
+                Това е един от основните проблеми, на които TypeScript дава решение – той ни дава възможността да определим типа на параметрите при
+                задаването на функцията. Така тя ще приема само аргументи от тип number, а при зададени аргументи от друг тип ще бъде изведена грешка.
+            </p>
+            <p>Ако разгледаме двата езика – JavaScript и TypeScript, тогава ще видим, че всеки JavaScript код е валиден TypeScript код. Можем да кажем, че:
+            <code class="code">JavaScript + повече функции = TypeScript</code>
+            </p>
+            <p>Подобренията, които TypeScript ни дава са: </p>
+            <ul>
+                <li>Освен динамичен е и статичен език, което му позволява да проверява типа на променливите, функциите и т.н.</li>
+                <li>Идентифицира грешките по време на компилация, което води до по-малък брой грешки по време на run-time</li>
+            </ul>
+            <figure class="image-container">
+            <table id="compare-table">
+                <tr>
+                    <th>Категория</th>
+                    <th>TypeScript</th>
+                    <th>JavaScript</th>
+                </tr>
+                <tr>
+                    <td>Разработен от</td>
+                    <td>Microsoft - 2012</td>
+                    <td>Берндан Ейх(Netscape) - 1995</td>
+                </tr>
+                <tr>
+                    <td>Вид</td>
+                    <td>Статичен и динамичен</td>
+                    <td>Само динамичен</td>
+                </tr>
+                <tr>
+                    <td>Компилиране</td>
+                    <td>Трябва да бъде компилиран</td>
+                    <td>Не трябва да се компилира</td>
+                </tr>
+                <tr>
+                    <td>Проверка на типа</td>
+                    <td>Има</td>
+                    <td>Няма</td>
+                </tr>
+                <tr>
+                    <td>Функционалности</td>
+                    <td>Поддържа generics и interfaces</td>
+                    <td>Не поддържа generics и interfaces</td>
+                </tr>
+                <tr>
+                    <td>Проверка за грешки</td>
+                    <td>Грешките могат да бъдат намерени по време на compile time</td>
+                    <td>Грешки могат да бъдат намерени само по време на run-time</td>
+                </tr>
+                <tr>
+                    <td>По-подходящ за</td>
+                    <td>Големи проекти</td>
+                    <td>Малки проекти</td>
+                </tr>
+            </table>
+            <figcaption>Таблица 1: Сравнение между JavaScript и TypeScript</figcaption>
+            </figure>
+        </article>
+        <article class="article-container">
+            <h2 id="install">Инсталиране</h2>
+            <p>За да започнете с Typescript са необходими следните инструменти:</p>
+            <ul>
+                <li>Node.js – средата, в която ще стартирате TypeScript компилатора. Можем да инсталираме оттук: <a href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a></li>
+                <li>TypeScript компилатор – Node.js модул, който компилира TypeScript до JavaScript</li>
+                <li>Visual Studio Code – редактор, който поддържа TypeScript. Препоръчително е да използвате него, но разбира се можете да използвате и друг редактор. </li>
+            </ul>
+            <p>Въведете следната команда в терминала: <code class="code">npm install -g typescript</code>, за да инсталирате компилатора на Typescript </p>
+           <p> За да се компилира Typescript кода, се изпълнява командата 
+                <code class="code">tcs filename.tsc</code> Тя ще създаде JavaScript файл със същото име.</p>
+            <p>В по-големи проекти обаче ще бъде досадно компилирането на множество .ts файлове. Затова TypeScript предоставя друга възможност за 
+            компилиране на всички или на отделни .ts файлове в проекта. Това става чрез т.нар. <code class="code">tsconfig.json файл</code> – обикновен файл във формат JSON, в който можем да посочим различни опции, за да кажем на компилатора как да компилира текущия проект.</p>    
+        </article>
+        <article class="article-container">
+            <h2 id="types">Типове</h2>
+            <h4>Типове чрез направено заключение (Types by Inference)</h4>
+            <p>TypeScript познава езика JavaScript и в много случаи ще генерира типове. Например при създаването на променлива и присвояването й на 
+                конкретна стойност, TypeScript ще използва зададената стойност за да разбере какъв е типа на променливата.</p>
+            <p>По този начин дори и без да се добавят някакви допълнителни знаци в кода, ние ще знаем от какъв тип са създадените от нас променливи.</p>
+            <h4>Дефиниране на типове</h4>
+            <p>TypeScript поддържа разширение на езика JavaScript, което предлага начин, по който ние можем да зададем какъв ще бъде типът на дадена 
+                променлива, функция, обект и т.н. За целта се използва синтаксиса <code class="code">:type</code>, като type може да бъде всеки валиден тип. След като един път
+                 е зададен определен тип, то може да бъде използван само и единствено този тип. В противен случай ще бъде изведена грешка. </p>
+            <p>Основните типове в TypeScript могат да бъдат разделени на няколко категории:</p>
+            <h4 id="build-in-types">Built-in типове</h4>
+            <ul>
+                <li>number – тип за числа. Няма специална променлива за int или float числа.</li>
+                <li>string - използва се за съхранение на текстови данни. Стойностите на низa са заобиколени от единични или двойни кавички.</li>
+                <li>boolean – позволява два типа стойности – true и false</li>
+                <li>undefined – когато променливата е декларирана без инициализация</li>
+                <li>null – показва липсата на стойност, не сочи към никакъв обект. Това означава, че не могат да бъдат достъпвани свойства на променливата или да се извика метод за нея</li>
+            </ul>
+            <h4>User-Defined типове</h4>
+            <ul>
+                <li>Enum - представява група от именувани константи. Препоръчително е да се използва когато има малък брой фиксирани тясно свързани стойности.
+                    TypeScript поддържа както числови, така и стринг-базирани enum-и.
+                </li>
+                <figure class="image-container">
+                    <pre class="code-blocks">
+                        enum name {
+                            constant1, 
+                            constant2, 
+                            ...
+                        };
+                    </pre>
+                    <figcaption>Код 2: Enum тип
+                        <a href="#link3">[3]</a>
+                    </figcaption>
+                </figure>
+                <li>Array – за дефиниране на масиви. След като дефинирате масив от конкретен тип, TypeScript ще попречи да бъдат добавяни стойности от друг тип.</li>
+                <li>Object – колекции от ключове и стойности</li>
+                <figure class="image-container">
+                    <pre class="code-blocks">
+                        let employee: {
+                            firstName: string;
+                            lastName: string;
+                            age: number;
+                            jobTitle: string;
+                        };
+                    </pre>
+                    <figcaption>Код 3: Object тип
+                        <a href="#link4">[4]</a>
+                    </figcaption>
+                </figure>
+                <li>Tuple – работи като масив, но има някои допълнителни функционалности:
+                    <ul>
+                        <li>броят на елементите в него е фиксиран</li>
+                        <li>знае се типът на всеки от елементите в него</li>
+                        <li>типът на елементите не е нужно да бъде един и същи</li>
+                        <li>редът на елементите е важен, защото ако разменим местата им ще получим грешка</li>
+                        <li>Optional Tuple Elements – може да има незадължителни елементи като това се указва с помощта на въпросителен знак (?) след типа на дадения елемент.</li>
+                    </ul>
+                </li>
+                <figure class="image-container">
+                    <pre class="code-blocks">
+                        // Declare a tuple type
+                        let x: [string, number];
+                        // Initialize it
+                        x = ["hello", 10]; // OK
+                        // Initialize it incorrectly
+                        x = [10, "hello"]; // Error
+                    </pre>
+                    <figcaption>Код 4: Tuple тип
+                        <a href="#link5">[5]</a>
+                    </figcaption>
+                </figure>
+            </ul>
+            <h4>Допълнителни типове:</h4>
+            <ul>
+                <li>Union – позволява ни да използваме повече от един тип данни за променлива или параметър на функция. Това е удобно, когато не знаем
+                     какъв тип е дадената променлива, но знаем, че е един тип от две или повече опции. Използваме го като зададем пайп оператор (|) 
+                     между възможните стойности.</li>
+                <figure class="image-container">
+                    <pre class="code-blocks">
+                        let result: number | string;
+                        result = 10; // OK
+                        result = 'Hi'; // also OK
+                        result = false; // a boolean value, not OK
+                    </pre>
+                    <figcaption>Код 5: Union тип
+                        <a href="#link6">[6]</a>
+                    </figcaption>
+                </div>
+                <li>Intersection – позволява комбинирането на два или повече типа с помощта на оператора „&“ като редът на типовете няма значение. </li>
+                <figure class="image-container">
+                    <pre class="code-blocks">
+                        type typeAB = typeA & typeB;
+                    </pre>
+                    <figcaption>Код 6: Intersection тип
+                        <a href="#link7">[7]</a>
+                    </figcaption>
+                </figure>
+                <li>Type aliases – дават възможността за задаване на ново, по-смислено име на определен тип. Те не създават нови типове, а само дават ново име на дадения тип. </li>
+                <figure class="image-container">
+                    <pre class="code-blocks">
+                        type alphanumeric = string | number;
+                        let input: alphanumeric;
+                        input = 100; // valid
+                        input = 'Hi'; // valid
+                        input = false; // Compiler error
+                    </pre>
+                    <figcaption>Код 7: Intersection тип
+                        <a href="#link8">[8]</a>
+                    </figcaption>
+                </figure>
+            </ul>
+        </article>
+        <article class="article-container">
+            <h2 id="functions">Функции</h2>
+            <p>Създаването и използването на функции е основен аспект на всеки език за програмиране и TypeScript не е по-различен. 
+                Той напълно поддържа съществуващия JavaScript синтаксис за функции, като същевременно добавя информация за типа и 
+                function overloading като нови функционалности. Информацията за типа намалява шансовете за грешки в кода, тъй като има по-нисък
+                 риск за подаване на невалидни данни като аргументи на функцията.
+                Можем да създаваме функции със следния синтаксис:
+                </p>
+            <figure class="image-container">
+                <pre class="code-blocks">
+                 function funcName(p1: p1Type, p2: p2Type): ReturnType {
+                     // ... body of the function
+                 }          
+                </pre>
+                <figcaption>Код 8: Синтаксис на функция в TypeScript
+                    <a href="#link8">[9]</a>
+                </figcaption>
+            </figure>
+            <p>В повечето случаи TypeScript е достатъчно умен, за да разбере какъв ще бъде типът на върнатата стойност, 
+                така че ReturnType може да бъде пропуснат.</p>
+            <h4>Function Overloading</h4>
+            <p>
+                Функциите имат способността да работят по различен начин в зависимост от предоставените им входни данни,
+                т.е. може да имаме няколко функции с едно и също име, но с параметри от различни типове и различен тип на върнатата стойност. 
+                Но броят на параметрите на функциите трябва да бъде един и същи.
+            </p>
+            <h4>Void тип на функция</h4>
+            <p>
+                Използва се при функции, които не връщат стойност. В JavaScript функция, която не връща никаква стойност,
+                ще върне стойността undefined. Но в TypeScript void и undefined не са едно и също нещо. Ако типът на функцията е void, то тя може да върне всяка друга стойност.
+                Ако обаче е undefined, то компилаторът на TypeScript също ще очаква функцията да върне undefined.
+            </p>
+        </article>
+        <article class="article-container">
+            <h2 id="classes">Класове</h2>
+            <p>
+                В обектно ориентираните езици за програмиране класовете са основните езици за създаване на компоненти за многократна употреба. 
+                Въпреки това до ES6 това не съществуваше в JavaScript – там наследяването беше прототипно-базирано. Но след появата на ES6 вече 
+                могат да бъдат дефинирани класове с ключовата дума <code class="code">class</code>. В ТypeScript това се случва по същия начин като има добавена функционалност
+                за дефиниране на типа.
+            </p>
+                <figure class="image-container">
+                    <pre class="code-blocks">
+                     class Point {
+                         x: number;
+                         y: number;
+                       }
+
+                     const pt = new Point();
+                     pt.x = 0;
+                     pt.y = 0;    
+                     </pre>
+                     <figcaption>Код 9: Синтаксис на клас в TypeScript
+                        <a href="#link9">[10]</a>
+                    </figcaption> 
+                </figure>
+            <h4>Наследяване</h4>
+            <p>За да се наследи даден клас, трябва да се извика ключовата дума <code class="code">super()</code> в конструктора. Можем да видим как става това като разгледаме следния пример - 
+            в него класът Employee наследява класа Person: </p>
+            <figure class="image-container">
+                <pre class="code-blocks">
+                    class Person {
+                        protected name: string;
+                        constructor(name: string) {
+                          this.name = name;
+                        }
+                      }
+                      class Employee extends Person {
+                        private department: string;
+                       
+                        constructor(name: string, department: string) {
+                          super(name);
+                          this.department = department;
+                        }   
+                </pre>
+                <figcaption>Код 10: Наследяване
+                    <a href="#link9">[10]</a>
+                </figcaption>
+            </figure>
+            <p>Typescript не позволява множествено наследяване чрез класове. Има друг начин за наследяване на методи от множество специални класове - нарича се Mixins.
+                Te представляват специални класове, които съдържат комбинация от методи, които могат да се използват от други класове.
+            </p>
+            <h4>Статични класове</h4>
+            <p> 
+                TypeScript не поддържа статични класове, за разлика от други популярни обектно-ориентирани езици за програмиране като C# и Java (те се нуждаят от статични класове, тъй като целият код, 
+                т.е. свойства и функции, трябва да бъде в клас и не може да съществува самостоятелно). В TypeScript може да се създават всякакви свойства и функции като обекти, 
+                без да се съдържат в клас. Следователно той не се нуждае от статични класове.
+            </p>
+            <h4>Видимост на членовете</h4>
+            <p>
+                В TypeScript могат да бъде контролирано дали определени свойства и методи ще бъдат видими извън класа или не. 
+                Това се осъществява чрез добавянето на една от следните ключови думи преди декларирането на името на даден член на класа:
+                <ul>
+                    <li>Public – разрешен е достъпът от всеки; всички членове на даден клас са public по подразбиране</li>
+                    <li>Protected – разрешен за достъп само от класа и неговите подкласове</li>
+                    <li>Private – разрешен е достъпа само от класа; никой друг няма достъп до private членовете на даден клас</li>
+                </ul>
+            </p>
+            <h4>readonly</h4> 
+                <p>
+                    Префикс, който можем да сложим пред член на клас. Членовете, означени с този префикс, могат да бъдат достъпни извън
+                 класа, но тяхната стойност не може да бъде променена
+                </p>
+        </article>
+        <article class="article-container">
+            <h2 id="interfaces">Интерфейси</h2>
+           <p>
+            Интерфейсите се използват за описание на формата на обект в TypeScript – предоставят информация за имената на свойствата на обектите и 
+            техния тип. Те дават гаранция, че всичко се изпълнява според очакванията. Членовете на интерфейсите не се имплементират и свойствата не 
+            се инициализират със стойности. Интерфейсите не се компилират до JavaScript. Дефинираме ги по същия начин като класовете, но заменяме 
+            ключовата дума class с <code class="code">interface</code>. Популярна конвенция е името на интерфейса да започва с <code class="code">главна буква I</code>.        
+           </p>
+           <figure class="image-container">
+                <pre class="code-blocks">
+                 interface IPoet {
+                     born: number;
+                     name: string;
+                   }          
+                </pre>
+                <figcaption>Код 11: Интерфейси в TypeScript
+                    <a href="#link10">[11]</a>
+                </figcaption>
+           </figure>
+               <h4>Implements</h4>
+               <p>Може да бъде използвана ключовата дума <code class="code">implements</code>, за да се провери дали даден клас отговаря на конкретен интерфейс. Ако има несъответствия, ще бъде изведено съобщение за грешка.
+                <figure class="image-container">
+                    <pre class="code-blocks">
+                        interface Animal {
+                            name: string;
+                            move(distance: number): void;
+                        } 
+                        class Zebra implements Animal {
+                            name: string;
+                            constructor(name: string) {
+                                this.name = name;
+                            }
+                            move(distance: number) {
+                                console.log(`Moving: ${distance}`);
+                            }
+                        }
+                        class PetRock implements Animal {
+                           // ~~~~~~~
+                           // Error: Class 'PetRock' incorrectly implements 
+                           // interface 'Animal'.
+                           //  Property 'move' is missing in type 'PetRock' 
+                           // but required in type 'Animal'.
+                            name = "Rocky";
+                        }
+                    </pre>
+                    <figcaption>Код 12: Употреба на implements в TypeScript
+                        <a href="#link10">[11]</a>
+                    </figcaption>
+                </figure>
+                В горния пример класът Zebra правилно имплементира класа Animal, но при PetRock получаваме грешка, тъй като там липcва <code class="code">move</code> методът.
+                Важно е да се отбележи, че <code class="code">implements</code> е само проверка дали класът отговаря на даден интерфейс – той <code class="code">не може</code> да променя типа на класа, както и неговите методи.
+                </p>
+                <h4>Разлика между <code class="code">type</code> и <code class="code">interface</code></h4>
+                <p>
+                    Много са сходни помежду си и в повечето случаи свободно може да се избира кое от двете да се използва. 
+                    Почти всички функционалности, които притежава interface, са налични и при type, като главната разлика е, че при type
+                     не можем да добавяме нови свойства, а при interface можем и той е винаги разширяем.
+                </p>
+        </article>
+        <article class="article-container">
+            <h2 id="generics">Generics</h2>
+            <p>
+                При разработването на приложения един от най-важните аспекти е да бъде използван код, който може да бъде преизползван. 
+                Има случаи, в които може да искаме част от кода да работи с различни типове. Нека разгледаме този пример – това e identity функция 
+                на JavaScript, която трябва да получава като вход данни от всякакъв тип и връща output, който е от същия тип като подадения input.
+            </p>
+            <figure class="image-container">
+                <pre class="code-blocks"> 
+                    function identity(input) {
+                        return input;
+                    }
+                    identity(3);
+                    identity("temp name");
+                    identity({ temp: "value" });
+                </pre>
+                <figcaption>Код 12: Функция, получаваща данни от всякакъв тип и връщаща output от същия тип като подадения
+                    <a href="#link10">[11]</a>
+                </figcaption>
+            </figure>
+            <p>
+                Можем да декларираме <code class="code">input</code> като <code class="code">any</code>, но в този случай типът на изхода също ще бъде от тип any. Като се има предвид, че входът 
+                може да бъде всякакъв тип, то трябва да има връзка между типа на входните и изходните данни. Тази връзка в TypeScript може да
+                 бъде осъществена с т.нар.  <code class="code">Generics</code>. Техният синтаксис е следният:
+            </p>
+            <figure class="image-container">
+                <pre class="code-blocks"> 
+                    function identity<T>(input: T) {
+                        return input;
+                    } 
+                    const numeric = identity(42); // Type: 42
+                    const stringy = identity("temp"); // Type: "temp"            
+                </pre>
+                <figcaption>Код 13: Употреба на Generics в TypeScript
+                    <a href="#link10">[11]</a>
+                </figcaption> 
+            </figure>
+            <p>В горния пример типът T е посочен с функцията в ъгловите скоби <code class="code">identity&lt;T&gt;</code>.
+                 Типовата променлива T се използва за определяне на типа на аргументите и връщаната стойност. Това означава, че типът данни, 
+                 който ще бъде посочен по време на извикване на функция, също ще бъде типът данни на аргументите на върнатата стойност.</p>
+            <p>Generics функционалността може да бъде използвана не само за функции, но и за класове и интерфейси. Тя ни предоставя начин да направим части от кода
+                 да работят с всеки тип данни и ни позволява да създаваме код, който след това може да бъде преизползван отново. </p>
+        </article>
+        <article class="article-container">
+            <h2 id="namespace">Namespace</h2>
+                <p>
+                    Namespace е функционалност на TypeScript, която ни помага да организираме нашите проекти и да избегнем сблъсъка на едни и същи 
+                    имена в тях. С Namespace може да групираме интерфейси, класове, функции и променливи. Така ако в даден проект имаме няколко класа 
+                    с едно и също име, но те се намират в различни пространства от имена, то техните имена няма да предизвикат проблем. 
+                    Създаваме го с ключовата дума <code class="code">namespace</code>, последвана от името на пространството от имена. Всички класове, интерфейси и т.н. 
+                    се дефинират в къдравите скоби. Синтаксисът е следният:
+                </p>
+                <figure class="image-container">
+                    <pre class="code-blocks">
+                        namespace &lt;name&gt;
+                        {
+
+                        }
+                    </pre>
+                    <figcaption>Код 14: Синтаксис за namespaces
+                        <a href="#link11">[12]</a>
+                    </figcaption> 
+                </figure>
+        </article>
+        <article class="article-container">
+            <h2 id="pros-cons">Плюсове и минуси</h2>
+            <h4>Положителни страни на TypeScript</h4>
+            <ul>
+                <li>Ранно забелязване на грешки/бъгове – според проучване на изследователи TypeScript открива 15 процента от често срещаните грешки 
+                    още на етап компилиране. Преминаването на кода през компилатор намалява обема на дейностите, свързани с осигуряване на качеството 
+                    на кода и тестване.</li>
+                <li>Предсказуемост – ако дадена променлива е дефинирана като символен низ, то тя винаги ще бъде символен низ и 
+                    няма да може да се превърне в булева променлива. Това увеличава вероятността функциите да работят правилно.</li>
+                <li>Богат избор на IDE – информацията за типовете прави редакторите и IDE-тата много по-полезни. Те дават възможност за 
+                    автоматично довършване и маркират грешки веднага щом се появят.</li>
+                <li>Съвместимост с платформи и браузъри - Всяко устройство, платформа или браузър, което работи с JavaScript, също работи с TypeScript.</li>
+            </ul>
+            <h4>Отрицателни страни на TypeScript</h4>
+            <ul>
+                <li>Добавяне на допълнителна стъпка(транспилиране) - Браузърите не могат да интерпретират TypeScript кода, така че трябва да го
+                     транспилирате в JavaScript. Този процес обаче е силно автоматизиран и не изисква много допълнително време.</li>
+                <li>Static typing - разработчиците, владеещи C#, C++ или Java, често твърдят, че TypeScript не е истински език за статично писане.
+                    В крайна сметка кодът се транспилира в нетипизиран JavaScript, така че винаги съществува риск от странни преобразувания на типове по време на изпълнение.</li>
+            </ul>
+        </article>
+        <article class="article-container">
+            <h2 id="ts-angular">ТypeScript и Angular</h2>
+                <p>
+                    Angular е framework, който превръща TypeScript в един наистина "могъщ" инструмент. Angular се използва с цел изграждане на клиентски приложения с помощта на HTML и TypeScript. Написан е на TypeScript. Наследник е на
+                    AngularJS, който е бил базиран на JavaScript. Основните градивни елементи на Angular са компонентите, които са организирани в NgModules. Едно приложение винаги има поне главен модул, който позволява стартиране и обикновено има много повече функционални модули.
+                    Компонентите дефинират изгледи, които са набори от елементи на екрана, които Angular може да избира между и да променя според логиката и данните на вашата програма
+                    Компонентите използват услуги, които предоставят специфична функционалност, която не е пряко свързана с изгледите.
+                </p>
+                <figure class="image-container">
+                    <img src="./img/angular.png" class="image"></img>
+                    <figcaption>Фигура 2: Лого на Angular
+                        <a href="#link2"></a>
+                    </figcaption>
+                </figure>
+              
+        </article>
+        <article class="article-container">
+            <h2 id="sources">Източници</h2>
+                <p id="link1">[1] TypeScript vs JavaScript: The Difference You Should Know [<a href="https://radixweb.com/blog/typescript-vs-javascript">https://radixweb.com/blog/typescript-vs-javascript</a>],
+                последно посетен на 08.04.2022</p>
+                <p id="link2">[2] What is TypeScript? [<a href="https://www.typescripttutorial.net/typescript-tutorial/what-is-typescript/">https://www.typescripttutorial.net/typescript-tutorial/what-is-typescript/</a>],
+                последно посетен на 08.04.2022</p>
+                <p id="link3">[3] TypeScript Enum [<a href="https://www.typescripttutorial.net/typescript-tutorial/typescript-enum/">https://www.typescripttutorial.net/typescript-tutorial/typescript-enum/</a>],
+                последно посетен на 09.04.2022</p>
+                <p id="link4">[4] Object Type [<a href="https://www.typescripttutorial.net/typescript-tutorial/typescript-object-type/">https://www.typescripttutorial.net/typescript-tutorial/typescript-object-type/</a>],
+                последно посетен на 09.04.2022</p>
+                <p id="link5">[5] Basic types [<a href="https://www.typescriptlang.org/docs/handbook/basic-types.html">https://www.typescriptlang.org/docs/handbook/basic-types.html</a>],
+                последно посетен на 09.04.2022</p>
+                <p id="link6">[6] TypeScript Union Type [<a href="https://www.typescripttutorial.net/typescript-tutorial/typescript-union-type/">https://www.typescripttutorial.net/typescript-tutorial/typescript-union-type/</a>],
+                последно посетен на 09.04.2022</p>
+                <p id="link7">[7] TypeScript Intersection Types [<a href="https://www.typescripttutorial.net/typescript-tutorial/typescript-intersection-types/">https://www.typescripttutorial.net/typescript-tutorial/typescript-intersection-types/</a>],
+                последно посетен на 09.04.2022</p>
+                <p id="link8">[8] TypeScript Type Aliases [<a href="https://www.typescripttutorial.net/typescript-tutorial/typescript-type-aliases//">https://www.typescripttutorial.net/typescript-tutorial/typescript-type-aliases/</a>],
+                последно посетен на 09.04.2022</p>
+                <p id="link9">[9] How To Use Functions in TypeScript [<a href="https://www.digitalocean.com/community/tutorials/how-to-use-functions-in-typescript">https://www.digitalocean.com/community/tutorials/how-to-use-functions-in-typescript</a>],
+                последно посетен на 10.04.2022</p>
+                <p id="link9">[10] Classes [<a href="https://www.typescriptlang.org/docs/handbook/2/classes.html">https://www.typescriptlang.org/docs/handbook/2/classes.html</a>],
+                последно посетен на 09.04.2022</p>
+                <p id="link10">[11] Learning TypeScript [<a href="https://learning.oreilly.com/library/view/learning-typescript/9781098110321/">https://learning.oreilly.com/library/view/learning-typescript/9781098110321/</a>],
+                последно посетен на 10.04.2022</p>
+                <p id="link11">[12] TypeScript - Namespaces [<a href="https://www.tutorialsteacher.com/typescript/typescript-namespace">https://www.tutorialsteacher.com/typescript/typescript-namespace</a>],
+                последно посетен на 12.04.2022</p>
+                <p id="link11">[13] TypeScript Interview Questions [<a href="https://www.interviewbit.com/typescript-interview-questions/">https://www.interviewbit.com/typescript-interview-questions/</a>],
+                последно посетен на 10.04.2022</p>
+                <p id="link11">[14] Introduction to TypeScript [<a href="https://www.koderhq.com/tutorial/typescript/">https://www.koderhq.com/tutorial/typescript/</a>],
+                последно посетен на 12.04.2022</p>
+                <p id="link11">[15] Void data type in Typescript [<a href="https://www.tektutorialshub.com/typescript/void-data-type-in-typescript/#void-vs-undefined">https://www.tektutorialshub.com/typescript/void-data-type-in-typescript/#void-vs-undefined</a>],
+                последно посетен на 04.05.2022</p>
+                <p id="link11">[16] Angular [<a href=" https://angular.io/guide/architecture">https://angular.io/guide/architecture</a>],
+                последно посетен на 04.05.2022</p>
+        </article>
+    </section>
+</body>
+</html>
